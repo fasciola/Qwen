@@ -1,0 +1,121 @@
+/* Revised package cards based on the approved pricing reference */
+#pricing {
+  background: #f3f9fd !important;
+}
+
+#pricing .pr-header p {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #476aa5 !important;
+}
+
+#pricing .pr-card {
+  min-height: 490px;
+  display: flex;
+  flex-direction: column;
+  border-color: #dfe8f1 !important;
+  box-shadow: none !important;
+}
+
+#pricing .pr-card.pricing-featured {
+  border: 1.5px solid #173d70 !important;
+  background: #fffefb !important;
+  color: #0d2d5a !important;
+  box-shadow: 0 15px 32px rgba(34, 68, 112, 0.12) !important;
+  transform: none !important;
+}
+
+#pricing .pr-card.pricing-featured .pricing-desc,
+#pricing .pr-card.pricing-featured .pricing-period,
+#pricing .pr-card.pricing-featured .pricing-subline,
+#pricing .pr-card.pricing-featured .pricing-feature-text {
+  color: #42639b !important;
+}
+
+#pricing .pr-card.pricing-featured .pricing-line {
+  background: #d7e3ee !important;
+}
+
+#pricing .pricing-badge {
+  background: #ffbf3c !important;
+  color: #15345f !important;
+  box-shadow: 0 6px 15px rgba(255, 190, 60, 0.28);
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 11px !important;
+}
+
+#pricing .pricing-name {
+  color: #0b2c59 !important;
+  font-weight: 700 !important;
+}
+
+#pricing .pricing-desc {
+  color: #4a69a0 !important;
+  min-height: 42px;
+}
+
+#pricing .pricing-price {
+  color: #0b2c59 !important;
+  font-weight: 700 !important;
+}
+
+#pricing .pricing-period,
+#pricing .pricing-subline {
+  color: #4869a0 !important;
+}
+
+#pricing .pricing-subline strong {
+  color: #0b2c59 !important;
+}
+
+#pricing .pricing-line { background: #dce6ef !important; }
+
+#pricing .pricing-check {
+  background: transparent !important;
+  color: #32cd8b !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+#pricing .pricing-feature-text {
+  color: #0b2c59 !important;
+  font-size: 14px !important;
+}
+
+#pricing .pricing-button {
+  margin-top: auto;
+  background: #fff !important;
+  color: #0b2c59 !important;
+  border: 1.5px solid #dce6ef !important;
+}
+
+#pricing .pricing-featured .pricing-button {
+  background: #ffbf3c !important;
+  color: #0b2c59 !important;
+  border-color: #ffbf3c !important;
+}
+
+#pricing .pricing-button:hover {
+  background: #edf5fb !important;
+}
+
+#pricing .pricing-featured .pricing-button:hover {
+  background: #f7ad25 !important;
+}
+
+#pricing .pricing-bottom-note {
+  color: #0b2c59 !important;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  #pricing .pr-card {
+    min-height: auto;
+  }
+
+  #pricing .pr-grid {
+    gap: 18px !important;
+  }
+}
