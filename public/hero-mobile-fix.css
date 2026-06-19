@@ -39,6 +39,34 @@
 [data-hero-video='true'] .hero-social .text-gold,
 [data-hero-video='true'] .hero-social .fill-gold { color: #a46d00 !important; fill: #a46d00 !important; }
 
+/* Glassmorphism navigation: translucent cream glass over hero/video content. */
+nav.fixed {
+  background: linear-gradient(120deg, rgba(255, 251, 245, 0.74), rgba(255, 245, 230, 0.56)) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+  backdrop-filter: blur(22px) saturate(150%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.58) !important;
+  box-shadow: 0 12px 32px rgba(23, 29, 54, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+}
+
+nav.fixed::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 42, 86, 0.16), transparent);
+  pointer-events: none;
+}
+
+nav.fixed a,
+nav.fixed button {
+  position: relative;
+  z-index: 1;
+}
+
+nav.fixed a:hover {
+  color: #b06f00 !important;
+}
+
 /* Logo refresh: clean navy utensil emblem with a bold corporate wordmark. */
 nav.fixed button:first-child {
   gap: 0.7rem !important;
@@ -136,6 +164,13 @@ nav.fixed button:first-child > span::first-letter {
   [data-hero-video='true'] .hero-social,
   [data-hero-video='true'] .hero-stats {
     display: none !important;
+  }
+
+  nav.fixed {
+    background: rgba(255, 250, 244, 0.66) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+    backdrop-filter: blur(18px) saturate(145%) !important;
+    box-shadow: 0 10px 26px rgba(23, 29, 54, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.44) !important;
   }
 
   nav.fixed button:first-child > svg {
