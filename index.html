@@ -18,19 +18,12 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      /*
-       * The React hero remains responsible for content and interactions.
-       * This small enhancement inserts the uploaded video beneath it after React mounts.
-       * Video file: public/videos/fork-founders-bg.mp4
-       */
       (function () {
         function mountHeroVideo() {
           var root = document.getElementById('root');
           if (!root || root.dataset.heroVideoMounted === 'true') return false;
-
           var hero = root.querySelector('section.relative');
           if (!hero) return false;
-
           var heroInner = hero.querySelector(':scope > div');
           if (!heroInner) return false;
 
@@ -52,7 +45,7 @@
           video.setAttribute('playsinline', '');
 
           var source = document.createElement('source');
-          source.src = '/videos/fork-founders-bg.mp4';
+          source.src = '/videos/fork-founders-bg.mp4.mp4';
           source.type = 'video/mp4';
           video.appendChild(source);
           layer.appendChild(video);
@@ -63,10 +56,7 @@
 
           heroInner.insertBefore(layer, heroInner.firstChild);
           heroInner.insertBefore(overlay, layer.nextSibling);
-
-          video.play().catch(function () {
-            /* Muted autoplay is normally allowed; poster remains visible if playback is blocked. */
-          });
+          video.play().catch(function () {});
           return true;
         }
 
