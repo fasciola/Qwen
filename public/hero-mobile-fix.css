@@ -22,6 +22,12 @@
   z-index: 20 !important;
 }
 
+/* Remove the two old floating decorative icon circles from the video hero. */
+[data-hero-video='true'] .animate-orbit,
+[data-hero-video='true'] .animate-orbit-reverse {
+  display: none !important;
+}
+
 /* Trust badges use a light surface, so their text must stay dark. */
 [data-hero-video='true'] .hero-social > div {
   background: rgba(255, 255, 255, 0.94) !important;
@@ -111,9 +117,7 @@
   }
 
   [data-hero-video='true'] .hero-social,
-  [data-hero-video='true'] .hero-stats,
-  [data-hero-video='true'] .animate-orbit,
-  [data-hero-video='true'] .animate-orbit-reverse {
+  [data-hero-video='true'] .hero-stats {
     display: none !important;
   }
 }
