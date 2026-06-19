@@ -34,18 +34,35 @@
   border: 1px solid rgba(255, 255, 255, 0.52);
 }
 
-[data-hero-video='true'] .hero-social .text-charcoal {
-  color: #1a1a1a !important;
-}
-
-[data-hero-video='true'] .hero-social .text-warm-grey {
-  color: #5d5147 !important;
-}
-
+[data-hero-video='true'] .hero-social .text-charcoal { color: #1a1a1a !important; }
+[data-hero-video='true'] .hero-social .text-warm-grey { color: #5d5147 !important; }
 [data-hero-video='true'] .hero-social .text-gold,
-[data-hero-video='true'] .hero-social .fill-gold {
-  color: #a46d00 !important;
-  fill: #a46d00 !important;
+[data-hero-video='true'] .hero-social .fill-gold { color: #a46d00 !important; fill: #a46d00 !important; }
+
+/* Logo refresh: clean navy utensil emblem with a bold corporate wordmark. */
+nav.fixed button:first-child {
+  gap: 0.7rem !important;
+}
+
+nav.fixed button:first-child > svg {
+  width: 2.35rem !important;
+  height: 2.35rem !important;
+  padding: 0.55rem !important;
+  border-radius: 999px !important;
+  background: #102a56 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(16, 42, 86, 0.18);
+}
+
+nav.fixed button:first-child > span {
+  color: #102a56 !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+}
+
+nav.fixed button:first-child > span::first-letter {
+  color: #102a56 !important;
 }
 
 @media (max-width: 767px) {
@@ -119,5 +136,15 @@
   [data-hero-video='true'] .hero-social,
   [data-hero-video='true'] .hero-stats {
     display: none !important;
+  }
+
+  nav.fixed button:first-child > svg {
+    width: 2.1rem !important;
+    height: 2.1rem !important;
+    padding: 0.5rem !important;
+  }
+
+  nav.fixed button:first-child > span {
+    font-size: 1rem !important;
   }
 }
