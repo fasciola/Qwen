@@ -22,6 +22,26 @@
   z-index: 20 !important;
 }
 
+/* Trust badges use a light surface, so their text must stay dark. */
+[data-hero-video='true'] .hero-social > div {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+}
+
+[data-hero-video='true'] .hero-social .text-charcoal {
+  color: #1a1a1a !important;
+}
+
+[data-hero-video='true'] .hero-social .text-warm-grey {
+  color: #5d5147 !important;
+}
+
+[data-hero-video='true'] .hero-social .text-gold,
+[data-hero-video='true'] .hero-social .fill-gold {
+  color: #a46d00 !important;
+  fill: #a46d00 !important;
+}
+
 @media (max-width: 767px) {
   [data-hero-video='true'],
   [data-hero-video='true'] > .sticky {
