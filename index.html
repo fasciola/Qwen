@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/hero-mobile-fix.css" />
     <link rel="stylesheet" href="/pricing-fix.css" />
+    <link rel="stylesheet" href="/concept-video.css" />
   </head>
   <body>
     <div id="root"></div>
@@ -56,58 +57,70 @@
           return true;
         }
 
+        function mountConceptVideo() {
+          var root = document.getElementById('root');
+          if (!root || root.dataset.conceptVideoMounted === 'true') return false;
+          var sections = root.querySelectorAll('section');
+          var conceptSection = null;
+          for (var i = 0; i < sections.length; i += 1) {
+            if (sections[i].textContent && sections[i].textContent.indexOf('CHOOSE YOUR CONCEPT') !== -1) {
+              conceptSection = sections[i];
+              break;
+            }
+          }
+          if (!conceptSection) return false;
+
+          root.dataset.conceptVideoMounted = 'true';
+          conceptSection.setAttribute('data-concept-video', 'true');
+          var content = conceptSection.firstElementChild;
+          if (content) content.classList.add('concept-video-content');
+
+          var layer = document.createElement('div');
+          layer.className = 'concept-video-layer';
+          layer.setAttribute('aria-hidden', 'true');
+          var video = document.createElement('video');
+          video.autoplay = true;
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.preload = 'metadata';
+          video.poster = '/hero-food.jpg';
+          video.setAttribute('muted', '');
+          video.setAttribute('playsinline', '');
+          var source = document.createElement('source');
+          source.src = '/videos/section-bg.mp4';
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          layer.appendChild(video);
+
+          var overlay = document.createElement('div');
+          overlay.className = 'concept-video-overlay';
+          overlay.setAttribute('aria-hidden', 'true');
+          conceptSection.insertBefore(layer, conceptSection.firstChild);
+          conceptSection.insertBefore(overlay, layer.nextSibling);
+          video.play().catch(function () {});
+          return true;
+        }
+
         function applyPricingPackages() {
           var cards = document.querySelectorAll('#pricing .pr-card');
           if (cards.length !== 3 || document.body.dataset.pricingFixed === 'true') return false;
           document.body.dataset.pricingFixed = 'true';
-
           var packages = [
-            {
-              name: 'Hybrid Plan',
-              desc: 'Lower monthly, with a one-time yearly setup.',
-              price: 'AED 2,500',
-              period: '/ month',
-              subline: '<strong>+ AED 20,000</strong> one-time setup (yearly)',
-              features: ['Full brand build & launch', 'All delivery apps managed', 'Cooking, packaging & dispatch', 'Dedicated account manager'],
-              cta: 'Choose Hybrid'
-            },
-            {
-              name: 'Monthly Plan',
-              desc: 'No upfront setup fee. The easiest way to begin.',
-              price: 'AED 4,600',
-              period: '/ month',
-              subline: 'No setup fee · <strong>Start from AED 13,800</strong> (first 3 months)',
-              features: ['Full brand build & launch', 'All delivery apps managed', 'Cooking, packaging & dispatch', 'No long upfront commitment'],
-              cta: 'Start monthly',
-              badge: 'Most popular to start'
-            },
-            {
-              name: 'Yearly Plan',
-              desc: 'One payment for the year. Best long-term value.',
-              price: 'AED 45,000',
-              period: '/ year',
-              subline: 'One-time yearly fee · <strong>No monthly payments</strong>',
-              features: ['Full brand build & launch', 'All delivery apps managed', 'Cooking, packaging & dispatch', 'No ongoing monthly commitment'],
-              cta: 'Choose yearly'
-            }
+            { name: 'Hybrid Plan', desc: 'Lower monthly, with a one-time yearly setup.', price: 'AED 2,500', period: '/ month', subline: '<strong>+ AED 20,000</strong> one-time setup (yearly)', features: ['Full brand build & launch', 'All delivery apps managed', 'Cooking, packaging & dispatch', 'Dedicated account manager'], cta: 'Choose Hybrid' },
+            { name: 'Monthly Plan', desc: 'No upfront setup fee. The easiest way to begin.', price: 'AED 4,600', period: '/ month', subline: 'No setup fee · <strong>Start from AED 13,800</strong> (first 3 months)', features: ['Full brand build & launch', 'All delivery apps managed', 'Cooking, packaging & dispatch', 'No long upfront commitment'], cta: 'Start monthly', badge: 'Most popular to start' },
+            { name: 'Yearly Plan', desc: 'One payment for the year. Best long-term value.', price: 'AED 45,000', period: '/ year', subline: 'One-time yearly fee · <strong>No monthly payments</strong>', features: ['Full brand build & launch', 'All delivery apps managed', 'Cooking, packaging & dispatch', 'No ongoing monthly commitment'], cta: 'Choose yearly' }
           ];
-
           cards.forEach(function (card, index) {
             var data = packages[index];
             card.classList.add('pricing-card-updated');
             card.classList.toggle('pricing-featured', index === 1);
             var badge = card.querySelector('.absolute.-top-3');
             if (data.badge) {
-              if (!badge) {
-                badge = document.createElement('div');
-                card.appendChild(badge);
-              }
+              if (!badge) { badge = document.createElement('div'); card.appendChild(badge); }
               badge.className = 'pricing-badge absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-pill font-bold';
               badge.textContent = data.badge;
-            } else if (badge) {
-              badge.remove();
-            }
-
+            } else if (badge) { badge.remove(); }
             var heading = card.querySelector('h3');
             if (heading) { heading.textContent = data.name; heading.classList.add('pricing-name'); }
             var desc = heading ? heading.nextElementSibling : null;
@@ -116,18 +129,12 @@
             if (price) { price.textContent = data.price; price.classList.add('pricing-price'); }
             var period = card.querySelector('.text-3xl + span');
             if (period) { period.textContent = data.period; period.classList.add('pricing-period'); }
-
             var priceWrap = price ? price.parentElement && price.parentElement.parentElement : null;
             if (priceWrap) {
               var existingSubline = priceWrap.querySelector('.pricing-subline');
-              if (!existingSubline) {
-                existingSubline = document.createElement('p');
-                existingSubline.className = 'pricing-subline text-sm mt-3 leading-relaxed';
-                priceWrap.appendChild(existingSubline);
-              }
+              if (!existingSubline) { existingSubline = document.createElement('p'); existingSubline.className = 'pricing-subline text-sm mt-3 leading-relaxed'; priceWrap.appendChild(existingSubline); }
               existingSubline.innerHTML = data.subline;
             }
-
             var divider = card.querySelector('.h-px');
             if (divider) divider.classList.add('pricing-line');
             var list = card.querySelector('ul');
@@ -140,12 +147,10 @@
                 list.appendChild(item);
               });
             }
-
             var button = card.querySelector('button');
             if (button) { button.textContent = data.cta; button.classList.add('pricing-button'); }
             card.querySelectorAll('p.text-\[11px\]').forEach(function (note) { note.remove(); });
           });
-
           var intro = document.querySelector('#pricing .pr-header p');
           if (intro) intro.textContent = 'Every package includes the exact same full service. The only difference is how you prefer to pay.';
           var bottom = document.querySelector('#pricing > div > p:last-child');
@@ -153,11 +158,16 @@
           return true;
         }
 
-        if (!mountHeroVideo() || !applyPricingPackages()) {
+        function mountAll() {
+          var heroDone = mountHeroVideo();
+          var conceptDone = mountConceptVideo();
+          var pricingDone = applyPricingPackages();
+          return heroDone && conceptDone && pricingDone;
+        }
+
+        if (!mountAll()) {
           var observer = new MutationObserver(function () {
-            var heroDone = mountHeroVideo();
-            var pricingDone = applyPricingPackages();
-            if (heroDone && pricingDone) observer.disconnect();
+            if (mountAll()) observer.disconnect();
           });
           observer.observe(document.getElementById('root'), { childList: true, subtree: true });
           window.setTimeout(function () { observer.disconnect(); }, 7000);
