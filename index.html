@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/hero-mobile-fix.css" />
     <link rel="stylesheet" href="/pricing-fix.css" />
     <link rel="stylesheet" href="/concept-video.css" />
+    <link rel="stylesheet" href="/nav-glass.css" />
   </head>
   <body>
     <div id="root"></div>
@@ -69,12 +70,10 @@
             }
           }
           if (!conceptSection) return false;
-
           root.dataset.conceptVideoMounted = 'true';
           conceptSection.setAttribute('data-concept-video', 'true');
           var content = conceptSection.firstElementChild;
           if (content) content.classList.add('concept-video-content');
-
           var layer = document.createElement('div');
           layer.className = 'concept-video-layer';
           layer.setAttribute('aria-hidden', 'true');
@@ -92,7 +91,6 @@
           source.type = 'video/mp4';
           video.appendChild(source);
           layer.appendChild(video);
-
           var overlay = document.createElement('div');
           overlay.className = 'concept-video-overlay';
           overlay.setAttribute('aria-hidden', 'true');
@@ -159,10 +157,7 @@
         }
 
         function mountAll() {
-          var heroDone = mountHeroVideo();
-          var conceptDone = mountConceptVideo();
-          var pricingDone = applyPricingPackages();
-          return heroDone && conceptDone && pricingDone;
+          return mountHeroVideo() && mountConceptVideo() && applyPricingPackages();
         }
 
         if (!mountAll()) {
