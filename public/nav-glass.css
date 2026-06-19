@@ -1,0 +1,63 @@
+/* Stronger floating glass navigation treatment */
+nav.fixed {
+  top: 12px !important;
+  left: 18px !important;
+  right: 18px !important;
+  width: auto !important;
+  min-height: 76px;
+  border-radius: 22px !important;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.16) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(180%) brightness(1.08) !important;
+  backdrop-filter: blur(26px) saturate(180%) brightness(1.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.52) !important;
+  box-shadow:
+    0 16px 44px rgba(25, 11, 28, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.14) !important;
+}
+
+nav.fixed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(112deg, rgba(255,255,255,.38) 0%, rgba(255,255,255,.10) 28%, rgba(255,255,255,0) 48%, rgba(255,236,214,.14) 100%),
+    radial-gradient(circle at 18% -70%, rgba(255,255,255,.7), transparent 42%);
+  opacity: .9;
+}
+
+nav.fixed::after {
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.92), rgba(214,174,112,.45), transparent) !important;
+}
+
+nav.fixed > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep the navigation readable over the video while preserving a transparent surface. */
+nav.fixed a,
+nav.fixed button,
+nav.fixed .text-charcoal,
+nav.fixed .text-burgundy {
+  text-shadow: 0 1px 12px rgba(255,255,255,.18);
+}
+
+@media (max-width: 767px) {
+  nav.fixed {
+    top: 8px !important;
+    left: 10px !important;
+    right: 10px !important;
+    min-height: 62px;
+    border-radius: 18px !important;
+    background: rgba(255, 255, 255, 0.13) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(175%) brightness(1.08) !important;
+    backdrop-filter: blur(22px) saturate(175%) brightness(1.08) !important;
+    box-shadow:
+      0 10px 28px rgba(25, 11, 28, 0.16),
+      inset 0 1px 0 rgba(255,255,255,.62) !important;
+  }
+}
